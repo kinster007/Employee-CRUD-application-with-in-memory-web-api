@@ -1,0 +1,96 @@
+<div class="card">
+  <div>
+    <h5>Update Details of Employee</h5>
+  </div>
+
+  <div>
+    <form
+      *ngIf="employee"
+      #f="ngForm"
+      [formGroup]="signupForm"
+      (ngSubmit)="save()"
+    >
+      <div>
+        <label for="name">Name </label>
+        <input
+          [(ngModel)]="employee.name"
+          name="name"
+          type="text"
+          id="name"
+          formControlName="name"
+        />
+      </div>
+
+      <div *ngIf="name.invalid && name.touched" class="col-sm-3 text-danger">
+        <div *ngIf="name?.errors['required']">
+          name field can't be blank
+        </div>
+
+        <div *ngIf="name?.errors['pattern']">
+          The name id doesn't seem right
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="location">location</label>
+        <select
+          [(ngModel)]="employee.location"
+          name="location"
+          id="location"
+          formControlName="area"
+        >
+          <option *ngFor="let g of locationList" [value]="g"> {{g}} </option>
+        </select>
+      </div>
+
+      <label for="email"> Email </label>
+
+      <input
+        [(ngModel)]="employee.email"
+        name="email"
+        formControlName="email"
+        type="email"
+        id="email"
+      />
+
+      <div *ngIf="email.invalid && email.touched" class="col-sm-3 text-danger">
+        <div *ngIf="email?.errors['required']">
+          Email field can't be blank
+        </div>
+
+        <div *ngIf="email?.errors['pattern']">
+          The email id doesn't seem right
+        </div>
+      </div>
+
+      <div>
+        <label for="mobile"> Mobile </label>
+
+        <input
+          type="text"
+          formControlName="mobile"
+          [(ngModel)]="employee.mobile"
+          name="mobile"
+          id="mobile"
+        />
+      </div>
+
+      <div
+        *ngIf="mobile.invalid && mobile.touched"
+        class="col-sm-3 text-danger"
+      >
+        <div *ngIf="mobile?.errors['required']">
+          mobile field can't be blank
+        </div>
+
+        <div *ngIf="mobile?.errors['pattern']">
+          The mobile id doesn't seem right
+        </div>
+      </div>
+
+      <button type="submit" id="edit" value="submit" class="btn btn-success">
+        Update
+      </button>
+    </form>
+  </div>
+</div>

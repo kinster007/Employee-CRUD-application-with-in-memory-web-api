@@ -1,0 +1,84 @@
+<h4>Add New Employee</h4>
+<div class="card-body">
+  <form [formGroup]="signupForm" (ngSubmit)="onFormSubmit(signupForm.value)">
+    <div>
+      <label for="name"> Name </label>
+      <input
+        type="text"
+        formControlName="name"
+        id="inputName"
+        placeholder="name"
+      />
+    </div>
+
+    <div *ngIf="name.invalid && name.touched" class="col-sm-3 text-danger">
+      <div *ngIf="name?.errors['required']">
+        name field can't be blank
+      </div>
+
+      <div *ngIf="name?.errors['pattern']">
+        The name id doesn't seem right
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="location">location</label>
+      <select id="select" formControlName="location">
+        <option *ngFor="let g of locationList" [value]="g"> {{g}} </option>
+      </select>
+    </div>
+
+    <div>
+      <label for="email"> Email </label>
+      <input
+        type="text"
+        formControlName="email"
+        id="inputEmail"
+        placeholder="Email"
+      />
+    </div>
+
+    <div *ngIf="email.invalid && email.touched" class="col-sm-3 text-danger">
+      <div *ngIf="email?.errors['required']">
+        Email field can't be blank
+      </div>
+
+      <div *ngIf="email?.errors['pattern']">
+        The email id doesn't seem right
+      </div>
+    </div>
+
+    <div>
+      <label for="mobile"> Mobile </label>
+
+      <input
+        type="text"
+        formControlName="mobile"
+        id="inputMobile"
+        placeholder="Mobile"
+      />
+    </div>
+
+    <div *ngIf="mobile.invalid && mobile.touched" class="col-sm-3 text-danger">
+      <div *ngIf="mobile?.errors['required']">
+        mobile field can't be blank
+      </div>
+
+      <div *ngIf="mobile?.errors['pattern']">
+        The mobile id doesn't seem right
+      </div>
+    </div>
+
+    <div>
+      <button
+        type="submit"
+        id="add"
+        value="submit"
+        [disabled]="!signupForm.valid"
+        class="btn btn-success"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
